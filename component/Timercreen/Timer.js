@@ -28,23 +28,40 @@ export default function Timer(){
 
     componentDidUpdate = (prevProp, prevState) => {
 
-        if(this.state.remainingSeconds ===0 && prevState.remainingSeconds !== 0) {
+        if(this.state.remainingSeconds === 0 && prevState.remainingSeconds !== 0) {
             this.stop();
         }
 
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(){
+        
+    
         if(this.interval){
             clearInterval(this.interval);
         }
     }
 
     start = () => {
-
+            this.setState(state => ({
+                remainingSeconds:
+                parseInt(state.selectedMinutes,10) * 60 + parseInt(state.selectedMinutes,30),
+                isRunning: true
+            }));
+            this.interval = setInterval(() => {
+                this.setState(state => ({
+                    remainingSeconds: state.remainingSeconds - 1
+                }));
+            }, 1000);
     }
 
     stop = () => {
+        clearInterval(this.interval);
+        this.interval = null;
+        this.setState({
+            remainingSeconds:5,
+            isRuning: false
+        })
 
     }
 
