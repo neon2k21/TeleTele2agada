@@ -1,21 +1,31 @@
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity,View,Text } from "react-native";
 
 
 
-const formatNumber = "";
+const formatNumber = number => `0${number}` . slice(-2);
 const getRemaining = () => {
+    const minutes = Math.floor(time/60);
+    const seconds = time - minutes * 60;
+    return {minutes: formatNumber(minutes), seconds: formatNumber(seconds)}
 
 }
 
-const createArray = () => {
+const createArray = length => {
 
+    const arr = [];
+    let i = 0;
+    while(i<length){
+        arr.push(i.toString);
+        i++;
+    }
+    return arr;
 }
 
-const AVAILABLE_Minutes = "";
-const AVAILABLE_Seconds = "";
+const AVAILABLE_Minutes = createArray(10);
+const AVAILABLE_Seconds = createArray(60);
 
 
-export default function Timer(){
+export default function Timerlocal(){
 
     state = {
             remainingSeconds: 5,
@@ -34,7 +44,7 @@ export default function Timer(){
 
     }
 
-    componentWillUnmount(){
+    componentWillUnmount=()=>{
         
     
         if(this.interval){
@@ -45,7 +55,7 @@ export default function Timer(){
     start = () => {
             this.setState(state => ({
                 remainingSeconds:
-                parseInt(state.selectedMinutes,10) * 60 + parseInt(state.selectedMinutes,30),
+                parseInt(state.selectedMinutes,10) * 60 + parseInt(state.selectedSeconds,30),
                 isRunning: true
             }));
             this.interval = setInterval(() => {
@@ -65,37 +75,78 @@ export default function Timer(){
 
     }
 
-    return(
+renderPickers = ()=>(
+<View style={style.pickerContainer}>
+        <Picker
+        style={styles.picker}
+            itemStyle={styles.pickerItem}
+            selectedValues={this.state.selectedMinutes}
+            onValueChange={itemValue => {
+                this.setState({selectedMinutes: itemValue});
+                mode="dropDown"}}>
+                    {
+                        AVAILABLE_Minutes.map(value => (
+                            <Picker.Item key={value} label={value} value={value}/>
+                        ))
+                    }
+                 </Picker>
+                 <Text > Мин.</Text>
+   
+  
+    <Picker
+    style={styles.picker}
+        itemStyle={styles.pickerItem}
+        selectedValues={this.state.selectedSeconds}
+        onValueChange={itemValue => {
+            this.setState({selectedSeconds: itemValue});
+            mode="dropDown"}}>
+                {
+                    AVAILABLE_Seconds.map(value => (
+                        <Picker.Item key={value} label={value} value={value}/>
+                    ))
+                }
+             </Picker>
+             <Text > Сек.</Text>
+             </View>
+);
+    
 
-        <View>
-            {
-                this.state.isRunning ? (
-                    <Text>
-                        {`${minutes}:${seconds}`}
-                    </Text>
-                ) : (
-                    this.renderPickers()
-                )
-            }
-            {
-                this.state.isRunning ? (
-                    <TouchableOpacity
-                    onPress={this.stop}
 
-                    >
-                        <Text>Стоп</Text>
-                    </TouchableOpacity>
-                ) : (
-                    <TouchableOpacity
-                    onPress={this.start}
+    render=()=>{
+        const {minutes,seconds} = getRemaining(this.state.remainingSeconds);
+        return(
 
-                    >
-                        <Text>Старт</Text>
-                    </TouchableOpacity>
-                )
-            }
-        </View>
-
-    )
+            <View>
+                {
+                    this.state.isRunning ? (
+                        <Text>
+                            {`${minutes}:${seconds}`}
+                        </Text>
+                    ) : (
+                        this.renderPickers()
+                    )
+                }
+                {
+                    this.state.isRunning ? (
+                        <TouchableOpacity
+                        onPress={this.stop}
+    
+                        >
+                            <Text>Стоп</Text>
+                        </TouchableOpacity>
+                    ) : (
+                        <TouchableOpacity
+                        onPress={this.start}
+    
+                        >
+                            <Text>Старт</Text>
+                        </TouchableOpacity>
+                    )
+                }
+            </View>
+    
+        )
+    }
+   
 
 }

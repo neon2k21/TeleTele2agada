@@ -33,10 +33,10 @@ export default function AppNavigation() {
                   return <UserIcon size ={size} color ={focused? 'coral' : 'gray'}/>
                 }
                 if ( route.name === 'Timer'){
-                  return <HeartIcon size ={size} color ={focused? 'coral' : 'gray'}/>
+                  return <ClockIcon size ={size} color ={focused? 'coral' : 'gray'}/>
                 }
                 if ( route.name === 'My Books'){
-                  return <ClockIcon size ={size} color ={focused? 'coral' : 'gray'}/>
+                  return <HeartIcon size ={size} color ={focused? 'coral' : 'gray'}/>
                 }
           },
         })}
