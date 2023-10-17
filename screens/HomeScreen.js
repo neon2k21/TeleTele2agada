@@ -1,4 +1,4 @@
-import { View, Text, Image, KeyboardAvoidingView, TextInput, TouchableOpacity, ScrollView, SafeAreaView, ImageBackground, Platform, Keyboard } from 'react-native'
+import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, ScrollView, SafeAreaView, ImageBackground, Platform, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 import {UserCircleIcon} from 'react-native-heroicons/solid'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -23,6 +23,7 @@ export default function HomeScreen() {
   return(
    
   <SafeAreaView className='pt-6 flex-1 bg-white'>
+    <StatusBar style='light'/>
     <ScrollView showsVerticalScrollIndicator={false} className={"space-y-6"+topMargin}>
       <View className="mx-5 flex-row justify-between itens-center mb-10">
         <Text className='font-bold text-neutral-700' style={{fontSize: wp(7)}}>

@@ -10,6 +10,7 @@ import {UserIcon} from 'react-native-heroicons/solid'
 import {HeartIcon} from 'react-native-heroicons/solid'
 import {ClockIcon} from 'react-native-heroicons/solid'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MyBookScreen from '../screens/MyBookcreen/MyBookScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +44,7 @@ export default function AppNavigation() {
       >
         <Tab.Screen name="Home" options={{headerShown: false}} component={HomeScreen} />
         <Tab.Screen name="Timer" options={{headerShown: false}} component={TimerScreen} />
-        <Tab.Screen name="My Books" options={{headerShown: false}} component={HomeScreen} />
+        <Tab.Screen name="My Books" options={{headerShown: false}} component={MyBookScreen} />
         <Tab.Screen name="Profile" options={{headerShown: false}} component={ProfileScreen} />
 
       </Tab.Navigator>
