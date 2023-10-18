@@ -155,7 +155,7 @@ export default class App extends Component{
           ))
         }
       </Picker>
-      <Text style={styles.pickerItem}>minutes</Text>
+      <Text style={styles.pickerItem}>мин.</Text>
       <Picker
         style={styles.picker}
         itemStyle={styles.pickerItem}
@@ -171,7 +171,7 @@ export default class App extends Component{
           ))
         }
       </Picker>
-      <Text style={styles.pickerItem}>seconds</Text>
+      <Text style={styles.pickerItem}>сек.</Text>
     </View>
   );
 

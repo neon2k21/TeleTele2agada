@@ -2,9 +2,9 @@ import { View, Text, Image, StatusBar, TextInput, TouchableOpacity, ScrollView, 
 import React, { useState } from 'react'
 import {UserCircleIcon} from 'react-native-heroicons/solid'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import Gallery from '../component/Homescreen/gallery'
-import SortCategories from '../component/Homescreen/sortGenre'
-import SearchBar from '../component/Homescreen/SearchBar';
+import Gallery from '../../component/Homescreen/gallery'
+import SortCategories from '../../component/Homescreen/sortGenre'
+import SearchBar from '../../component/Homescreen/SearchBar';
 
 
 const ios = Platform.OS==='ios';

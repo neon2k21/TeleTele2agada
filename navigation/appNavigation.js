@@ -1,16 +1,21 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen'
-import TimerScreen from '../screens/TimerScreen'
+import HomeScreen from '../screens/AppScreens/HomeScreen';
+import ProfileScreen from '../screens/AppScreens/ProfileScreen'
+import TimerScreen from '../screens/AppScreens/TimerScreen'
 import { LogBox, Text, View } from 'react-native';
 import {HomeIcon} from 'react-native-heroicons/solid'
 import {UserIcon} from 'react-native-heroicons/solid'
 import {HeartIcon} from 'react-native-heroicons/solid'
 import {ClockIcon} from 'react-native-heroicons/solid'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MyBookScreen from '../screens/MyBookcreen/MyBookScreen';
+import MyBookScreen from '../screens/AppScreens/MyBookcreen/MyBookScreen';
+import {LoginScreen} from '../screens/LoginScreen/LoginScreen'
+import {SignupScreen} from '../screens/LoginScreen/SignupScreen'
+
+const Stack = createNativeStackNavigator();
+
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +26,10 @@ LogBox.ignoreLogs([
 export default function AppNavigation() {
   return (
     <NavigationContainer>
+       <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Signup" component={SignupScreen} />
+      </Stack.Navigator>
       <Tab.Navigator
         
         screenOptions={({route}) => ({
@@ -48,7 +57,10 @@ export default function AppNavigation() {
         <Tab.Screen name="Profile" options={{headerShown: false}} component={ProfileScreen} />
 
       </Tab.Navigator>
+     
     </NavigationContainer>
+    
   )
+ 
   
 }
